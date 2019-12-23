@@ -1,0 +1,5 @@
+#!/bin/sh
+if [ -z "${PREFIX_NATIVE}" ]; then
+	PREFIX_NATIVE="/home/moi/midipix/nt64/release/native";
+fi;
+"$(dirname "${0}")"/pkgconf --define-variable=prefix="${PREFIX_NATIVE%/}/" "${@}";

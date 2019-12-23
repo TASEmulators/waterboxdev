@@ -1,0 +1,32 @@
+%rename cpp_options old_cpp_options
+
+*cpp_options:
+-nostdinc -isystem /home/moi/midipix/nt64/release/x86_64-nt64-midipix/include -isystem include%s %(old_cpp_options)
+
+*cc1:
+%(cc1_cpu) -nostdinc -isystem /home/moi/midipix/nt64/release/x86_64-nt64-midipix/include -isystem include%s
+
+*link_libgcc:
+-L/home/moi/midipix/nt64/release/x86_64-nt64-midipix/lib -L .%s
+
+*libgcc:
+libgcc.a%s %:if-exists(libgcc_eh.a%s)
+
+*startfile:
+%{!shared: /home/moi/midipix/nt64/release/x86_64-nt64-midipix/lib/%{pie:S}crt1.o} /home/moi/midipix/nt64/release/x86_64-nt64-midipix/lib/crti.o %{shared|pie:crtbeginS.o%s;:crtbegin.o%s}
+
+*endfile:
+%{shared|pie:crtendS.o%s;:crtend.o%s} /home/moi/midipix/nt64/release/x86_64-nt64-midipix/lib/crtn.o
+
+*link:
+-dynamic-linker /home/moi/midipix/nt64/release/x86_64-nt64-midipix/lib/libc.so -nostdlib %{shared:-shared} %{static:-static} %{rdynamic:-export-dynamic}
+
+*esp_link:
+
+
+*esp_options:
+
+
+*esp_cpp_options:
+
+

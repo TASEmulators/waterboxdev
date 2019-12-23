@@ -1,0 +1,5 @@
+#!/bin/sh
+case "${1}" in
+--cflags)	echo "-I/home/moi/midipix/nt64/release/native/include/libxml2"; ;;
+--libs)		echo "-L/home/moi/midipix/nt64/release/native/lib" -lxml2 -lz -llzma -lpthread -lm; ;;
+esac;
