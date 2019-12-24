@@ -14,7 +14,9 @@ It is a little overpowered, but it lets the same steps work on every workstation
 STOP HERE AND DO THIS IF YOU ARE USING LINUX AND DON'T WANT TO USE VAGRANT:
 1. copy share/midipix-prebaked to /home/moi/midipix
 2. put /home/moi/midipix/nt64/release/bin in path
-3. Be aware that if we ever bring the midipix toolchain building-from-sources back to life, you may need to use waterboxdev in order to do that effectively, or at all.
+3. Do not substitute any other word for "moi". For instance, do not use "/home/coolguy/midipix" or "/home/improviser/midipix" or "/home/likestofail/midipix". 
+   The above steps must be followed exactly, and you must use "/home/moi/midipix" verbatim.
+4. Be aware that if we ever bring the midipix toolchain building-from-sources back to life, you may need to use waterboxdev in order to do that effectively, or at all.
 
 ==================================================================
 
