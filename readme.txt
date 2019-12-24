@@ -14,7 +14,7 @@ It is a little overpowered, but it lets the same steps work on every workstation
 STOP HERE AND DO THIS IF YOU ARE USING LINUX AND DON'T WANT TO USE VAGRANT:
 1. copy share/midipix-prebaked to /home/moi/midipix
 2. put /home/moi/midipix/nt64/release/bin in path
-3. Be aware that if we ever bring the midipix toolchain building back to life, you may need to use waterbox in order to do that effectively
+3. Be aware that if we ever bring the midipix toolchain building-from-sources back to life, you may need to use waterboxdev in order to do that effectively, or at all.
 
 ==================================================================
 
@@ -40,10 +40,10 @@ DEVELOPMENT LOOP
 
 1. open a command prompt to the c:\waterboxdev. you can use a bash shell from msys as well, if you wish, if you take care to setup the environment correctly (see %PATH% above)
 2. run `vagrant up` to boot the VM
- (the first time you do this, a VM will have to download; it's cached in `%home%/.vagrant.d` so this won't happen again. The VM is ~390MB.
+ (the first time you do this, a VM will have to download; it's cached in `%home%/.vagrant.d` so this won't happen again. The VM is ~390MB.)
 3. run `vagrant ssh` to connect to the VM
-4. clone bizhawk if you haven't already; I suggest cloning to /share/bizhawk as it will make your development easier
-5. You may wish to automate building + copying the *.wbx into the bizhawk output/dll dir. You don't need to .gz them, that is optional.
+4. clone bizhawk if you haven't already; I suggest cloning to /share/bizhawk as it will make your development easier (you can test the emulator in windows immediately after building a core)
+5. You may wish to automate building + copying the *.wbx into the bizhawk output/dll dir. You don't need to .gz them, that is optional, but make sure to delete the existing committed .gz cores probably.
 
 DEVELOPMENT LOOP (ENDING WORK FOR THE DAY)
 
