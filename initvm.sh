@@ -10,7 +10,7 @@
 
 # needed for building stuff
 apt-get update
-apt-get -y install make git nasm
+apt-get -y install make git nasm dos2unix
 
 ###################################################
 # WATERBOX DEVELOPMENT ENVIRONMENT

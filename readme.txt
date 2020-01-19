@@ -42,16 +42,28 @@ DEVELOPMENT LOOP
 
 1. open a command prompt to the c:\waterboxdev. you can use a bash shell from msys as well, if you wish, if you take care to setup the environment correctly (see %PATH% above)
 2. run `vagrant up` to boot the VM
- (the first time you do this, a VM will have to download; it's cached in `%home%/.vagrant.d` so this won't happen again. The VM is ~390MB.)
-3. run `vagrant ssh` to connect to the VM
+    (the first time you do this, a VM will have to download; it's cached in `%home%/.vagrant.d` so this won't happen again. The VM is ~390MB.)
+3. run `vagrant ssh` to connect to the VM, and from here on out I'll assume you're SSH'd to the VM
 4. clone bizhawk if you haven't already; I suggest cloning to /share/bizhawk as it will make your development easier (you can test the emulator in windows immediately after building a core)
-5. You may wish to automate building + copying the *.wbx into the bizhawk output/dll dir. You don't need to .gz them, that is optional, but make sure to delete the existing committed .gz cores probably.
-6. It has come to our attention that some people don't know to even begin building waterbox cores. This would consist of finding a directory in the bizhawk sources with a Makefile, and typing `make` in the vm?
-7. You can also use `make -f waterbox-Makefile.all` from the bizhawk sources waterbox directory to test building all waterbox cores
+    (it may be difficult to clone bizhawk here using tortoisegit due to it's apparently under the control of the waterboxdev repository. You can do it in a temp directory elsewhere and then move it in via explorer)
+4. Build the core you want. This is done by finding the core directory in the /share/bizhawk/waterbox directory and running `make -j`
+5. Place the .wbx core in the the bizhawk output/dll directory. Note that you should remove the .gz committed version of the core first.
+
+DEVELOPMENT LOOP (TIPS)
+
+1. You will wish to automate building + copying the *.wbx into the bizhawk output/dll dir.
+    For instance, for libsnes, I made a `build.sh` consisting of `make -j && gzip -c libsnes.wbx > ../../output/dll/libsnes.wbx.gz`
+    You may need to run `dos2unix` on `build.sh` if you made it in notepad
+    Perhaps we should commit these for each core? Sometimes details may vary a little bit (may want a special script for building without LTO or optimizing and then a script for making final build for commit?)
+2. You can also use `make -f waterbox-Makefile.all` from the /share/bizhawk/waterbox directory to test building all waterbox cores
+3. You can improve iteration time by temporarily removing `-flto` from a `Makefile`
+4. several cores (picodrive, ss) take a very long time to build at first; there are large CPU files to compile, and then there is a long link time. Make sure to disable LTO for those
 
 DEVELOPMENT LOOP (ENDING WORK FOR THE DAY)
 
-1. run `vagrant halt` to nicely stop the VM. Note that if you do this from an SSH shell to the VM, it won't work, since vagrant runs on your host PC. Try running `vagrant halt` from the same context you ran `vagrant up` from perhaps?
+1. gzip the core you worked on, with a command such as 
+1. exit the SSH session with `exit`
+2. run `vagrant halt` to nicely stop the VM
 
 -------------------------------------
 
@@ -62,6 +74,3 @@ note - the VM that vagrant downloaded will still be in c:\users\yourname\.vagran
 
 ==================================================================
 
-SOME NOTES ABOUT WATERBOX CORES
-
-* several cores (picodrive, ss) take a very long time to build; there are large CPU files to compile, and then there is a long link time. Make you can disable LTO while devving?
